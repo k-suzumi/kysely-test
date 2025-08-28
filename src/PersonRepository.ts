@@ -21,4 +21,9 @@ export const search = async (
     }
     return await query.selectAll().execute()
 }
-console.log(search({ name: 'Tanaka' }))
+
+console.log("start")
+search({ name: 'Tanaka' }).then((res)=>{
+    console.log("end")
+    console.log(res)
+}).catch((e)=>{console.log})

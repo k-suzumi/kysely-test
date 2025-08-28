@@ -1,7 +1,7 @@
 // index.ts - 修正版データベース接続
 import type { DB } from './types.js'
-import { createPool } from 'mysql2/promise'
-import { Kysely, MysqlDialect } from 'kysely'
+import { createPool } from 'mysql2'
+import { Kysely, MysqlDialect, type MysqlPool } from 'kysely'
 
 const pool = createPool({
   database: 'meibo_app',
@@ -10,10 +10,10 @@ const pool = createPool({
   password: 'root',
   port: 3306,
 })
-
-const dialect = new MysqlDialect({
-  pool: pool
-})
+  const dialect = new MysqlDialect({
+    pool: pool
+  }
+)
 
 export const db = new Kysely<DB>({
   dialect,
